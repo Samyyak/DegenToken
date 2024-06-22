@@ -17,11 +17,11 @@ You can download the DegenToken.sol file and then compile it in Remix and then c
 Steps to be followed inorder to run the contract seamlessly:
 
 1. Following steps are to be followed to create a Test Network in Metamask:
-   *Network Name*: Avalanche Fuji C-Chain
-   *New RPC URL*: https://api.avax-test.network/ext/bc/C/rpc
-   *ChainID*: 43113
-   *Symbol*: AVAX
-   *Explorer*: https://testnet.snowtrace.io/
+   - **Network Name**: Avalanche Fuji C-Chain
+   - **New RPC URL**: https://api.avax-test.network/ext/bc/C/rpc
+   - **ChainID**: 43113
+   - **Symbol**: AVAX
+   - **Explorer**: https://testnet.snowtrace.io/
  
 2. To get free AVAX testnet Faucet(tokens) on the network in metamask, we have to the visit https://core.app/en/tools/testnet-faucet/?subnet=c&token=c where a paticular coupon code is required to get tokens.The coupon code can be easily redeemed through a website https://guild.xyz/avalanche by just completing some simple steps.
    
