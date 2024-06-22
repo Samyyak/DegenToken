@@ -59,7 +59,7 @@ Some files requires flattening at the time of download from the Remix IDE as the
 ## Authors
 
 Samyak Jain 
-[@Samyak](https://www.linkedin.com/in/samyak-jain-179710233/)
+[@LinkedIn](https://www.linkedin.com/in/samyak-jain-179710233/)
 
 
 ## License
