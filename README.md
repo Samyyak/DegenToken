@@ -14,7 +14,7 @@ You can download the DegenToken.sol file and then compile it in Remix and then c
 
 ### Executing program
 
-Steps to be followed in order to run the contract seamlessly:
+Steps to be followed to run the contract seamlessly:
 
 1. First we have to take test credit in the form of AVAX tokens in the Avalanche Fuji C-Chain.
 
