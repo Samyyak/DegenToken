@@ -25,35 +25,35 @@ contract DegenToken is ERC20, Ownable, ERC20Burnable {
         transfer(_receiver, _value);
     }
 
-    function redeemTokens(uint256 _amount) external {
-        require(balanceOf(msg.sender) >= _amount, "You do not have enough Degen Tokens to redeem this reward");
+    function redeemTokens(address _redeemer, uint256 _amount) external {
+        require(balanceOf(_redeemer) >= _amount, "The specified address does not have enough Degen Tokens to redeem this reward");
 
-        if (_amount >= 300) {
-            _burn(msg.sender, _amount);
-            emit TokensRedeemed(msg.sender, _amount, "Degen Gradient Box");
-        } else if (_amount >= 200) {
-            _burn(msg.sender, _amount);
-            emit TokensRedeemed(msg.sender, _amount, "Degen Legendary Box");
-        } else if (_amount >= 100) {
-            _burn(msg.sender, _amount);
-            emit TokensRedeemed(msg.sender, _amount, "Degen Elite Box");
+        if (_amount == 300) {
+            _burn(_redeemer, _amount);
+            emit TokensRedeemed(_redeemer, _amount, "Degen Gradient Box");
+        } else if (_amount == 200) {
+            _burn(_redeemer, _amount);
+            emit TokensRedeemed(_redeemer, _amount, "Degen Legendary Box");
+        } else if (_amount == 100) {
+            _burn(_redeemer, _amount);
+            emit TokensRedeemed(_redeemer, _amount, "Degen Elite Box");
         } else {
             revert("Not enough tokens for any reward");
         }
     }
 
-    function earnLoyaltyBadge(uint256 _amount) external {
-        require(balanceOf(msg.sender) >= _amount, "You do not have enough Degen Tokens to earn this badge");
+    function earnLoyaltyBadge(address _player, uint256 _amount) external {
+        require(balanceOf(_player) >= _amount, "The specified address does not have enough Degen Tokens to earn this badge");
 
         if (_amount >= 80) {
-            _burn(msg.sender, _amount);
-            emit LoyaltyBadgeEarned(msg.sender, _amount, "Degen Gradient Badge");
+            _burn(_player, _amount);
+            emit LoyaltyBadgeEarned(_player, _amount, "Degen Gradient Badge");
         } else if (_amount >= 60) {
-            _burn(msg.sender, _amount);
-            emit LoyaltyBadgeEarned(msg.sender, _amount, "Degen Legendary Badge");
+            _burn(_player, _amount);
+            emit LoyaltyBadgeEarned(_player, _amount, "Degen Legendary Badge");
         } else if (_amount >= 20) {
-            _burn(msg.sender, _amount);
-            emit LoyaltyBadgeEarned(msg.sender, _amount, "Degen Elite Badge");
+            _burn(_player, _amount);
+            emit LoyaltyBadgeEarned(_player, _amount, "Degen Elite Badge");
         } else {
             revert("Not enough tokens for any badge");
         }
