@@ -23,7 +23,7 @@ Steps to be followed inorder to run the contract seamlessly:
    - **Symbol**: AVAX
    - **Explorer**: [Snowtrace Testnet](https://testnet.snowtrace.io/)
  
-2. To get free AVAX testnet Faucet(tokens) on the network in metamask, we have to the visit Visit the [AVAX Testnet Faucet](https://core.app/en/tools/testnet-faucet/?subnet=c&token=c) where a paticular coupon code is required to get tokens.The coupon code can be easily redeemed through a website [Guild.xyz Avalanche](https://guild.xyz/avalanche) by just completing some simple steps.
+2. To get free AVAX testnet Faucet(tokens) on the network in metamask, we have to the visit [Core.app for AVAX Testnet Faucet](https://core.app/en/tools/testnet-faucet/?subnet=c&token=c) where a paticular coupon code is required to get tokens.The coupon code can be easily redeemed through a website [Guild.xyz Avalanche](https://guild.xyz/avalanche) by just completing some simple steps.
    
 3. The generated secret code then has to be entered in the coupon code field and after that we will enter the address of the Account of the Test net of Avalanche.
    
