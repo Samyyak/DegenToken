@@ -46,18 +46,20 @@ Steps to be followed to run the contract seamlessly:
 
 After the Contract is deployed we can perform the following operations in it:
 
-1. Minting Tokens: Creating new tokens (can only be done by the owner).
-2. Burning Tokens: Burn tokens from the whole smart contract.
-3. Redeem Tokens: Buy different merchandise using tokens.
-4. Transfer Tokens: Transfer tokens from a particular address to another address.
-5. Get Balance: Check the balance of a particular address at a particular time.
-6. Store Items: Displays the list of all merchandise present in the inventory with attributes: (Name, Cost).
-7. Approve: Approve a certain address to be able to transact in the smart contract environment.
-8. Pause: Pause all token transfers (only by the owner).
-9. Unpause: Unpause all token transfers (only by the owner).
-10. Withdraw ETH: Withdraw the ETH balance to the owner's address.
-11. Add Merchandise: Add new merchandise items (only by the owner).
-12. Get Merchandise List: Retrieve the list of all merchandise items.
+1. Minting Tokens: Allows the owner to create new tokens and assign them to a specified address.
+2. Redeeming Tokens: Enables users to redeem tokens for specified merchandise items.
+3. Burning Tokens: Allows users to destroy a specified amount of their tokens.
+4. Pausing Transfers: Pauses all token transfers (only by the owner).
+5. Unpausing Transfers: Resumes all token transfers (only by the owner).
+6. Checking Paused State: Returns the current paused state of token transfers.
+7. Withdrawing ETH: Transfers the contract's ETH balance to the owner's address.
+8. Adding Merchandise: Adds new merchandise items to the inventory (only by the owner).
+9. Getting Merchandise List: Retrieves the list of all merchandise items.
+10. Checking Inventory: Returns the redeemed items and quantities for a specified account.
+11. Transferring Tokens: Transfers tokens to a specified recipient if transfers are not paused.
+12. Transferring Tokens from Another Address: Allows a spender to transfer tokens from a specified sender if transfers are not paused.
+13. Approving Spender: Approves a spender to spend a specified amount of the caller's tokens.
+14. Receiving ETH: Allows the contract to receive ETH.
 
 ## Help
 
