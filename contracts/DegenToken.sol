@@ -7,19 +7,21 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract DegenGamingToken is ERC20, Ownable {
     struct Item {
         string name;
-        uint256 price; 
+        uint256 price;
     }
 
     mapping(uint256 => Item) private merchandise;
     uint256 private merchandiseCount;
 
-    
-    event Redeem(address indexed account, uint256 indexed itemId);
+    mapping(address => mapping(uint256 => uint256)) private redeemedItems;
+
+    event Redeem(address indexed account, uint256 indexed itemId, uint256 quantity);
 
     bool private _paused;
+
     constructor() ERC20("Degen Gaming Token", "DGT") Ownable(msg.sender) {
-        _paused = false; 
-       
+        _paused = false;
+
         addMerchandise("40 UC Pack", 100);
         addMerchandise("100 UC Pack", 200);
         addMerchandise("200 UC Pack", 500);
@@ -29,53 +31,47 @@ contract DegenGamingToken is ERC20, Ownable {
         addMerchandise("10000 UC Pack", 15000);
     }
 
-    
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
 
-    
-    function redeem(uint256 itemId) public {
+    function redeem(uint256 itemId, uint256 quantity) public {
         require(itemId < merchandiseCount, "Invalid merchandise choice");
-        uint256 price = merchandise[itemId].price;
+        uint256 price = merchandise[itemId].price * quantity;
         require(balanceOf(msg.sender) >= price, "Insufficient balance");
 
         _burn(msg.sender, price);
-        emit Redeem(msg.sender, itemId);
+
+        redeemedItems[msg.sender][itemId] += quantity;
+
+        emit Redeem(msg.sender, itemId, quantity);
     }
 
-    
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);
     }
 
-   
     function pause() public onlyOwner {
         _paused = true;
     }
 
-    
     function unpause() public onlyOwner {
         _paused = false;
     }
 
-    
     function paused() public view returns (bool) {
         return _paused;
     }
 
-   
     function withdrawEth() public onlyOwner {
         payable(owner()).transfer(address(this).balance);
     }
 
-   
     function addMerchandise(string memory name, uint256 price) public onlyOwner {
         merchandise[merchandiseCount] = Item(name, price);
         merchandiseCount++;
     }
 
-   
     function getMerchandiseList() public view returns (string[] memory, uint256[] memory) {
         string[] memory names = new string[](merchandiseCount);
         uint256[] memory prices = new uint256[](merchandiseCount);
@@ -88,19 +84,30 @@ contract DegenGamingToken is ERC20, Ownable {
         return (names, prices);
     }
 
-   
+    function inventory(address account) public view returns (string[] memory, uint256[] memory) {
+        uint256 itemCount = merchandiseCount;
+        string[] memory names = new string[](itemCount);
+        uint256[] memory quantities = new uint256[](itemCount);
+
+        for (uint256 i = 0; i < itemCount; i++) {
+            names[i] = merchandise[i].name;
+            quantities[i] = redeemedItems[account][i];
+        }
+
+        return (names, quantities);
+    }
+
     function transfer(address recipient, uint256 amount) public override returns (bool) {
         require(!_paused, "Token transfers are paused");
         return super.transfer(recipient, amount);
     }
 
-    
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
         require(!_paused, "Token transfers are paused");
-        
+
         uint256 currentAllowance = allowance(sender, _msgSender());
         uint256 senderBalance = balanceOf(sender);
-        
+
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
         require(senderBalance >= amount, "ERC20: transfer amount exceeds balance");
 
@@ -110,11 +117,9 @@ contract DegenGamingToken is ERC20, Ownable {
         return success;
     }
 
-    
     function approve(address spender, uint256 amount) public override returns (bool) {
         return super.approve(spender, amount);
     }
 
-    
     receive() external payable {}
 }
